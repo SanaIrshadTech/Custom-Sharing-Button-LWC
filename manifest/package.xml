@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>customSharingButtonLwc</members>
+		<members>userLookupSearchLwc</members>
+		<members>multiselectOptions</members>
+		<members>customTypesForDatatable</members>
+		<members>datatablePicklist</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>ShareRecordController</members>
+		<members>UserLookupSearchController</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>modal</members>
+		<name>StaticResource</name>
+	</types>
+	<version>61.0</version>
+</Package>

@@ -1,0 +1,23 @@
+.pill-css {
+    border-color: aqua;
+    border-width: unset;
+    padding: 3px 2px 3px 2px;
+}
+.anchorTag-css {
+    font-size: small;
+    font-style: italic;
+    color:blue;
+}
+.dropdownBox-css {
+    width: 100%;
+    border-width:unset;
+}
+.dropdownBoxUl-css {
+    background-color: beige;
+    max-height: 100px; 
+    overflow-y:auto;
+}
+
+.dropdown-item {
+    padding:0px 0px 0px 5px;
+}

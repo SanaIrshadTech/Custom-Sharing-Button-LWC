@@ -1,0 +1,16 @@
+.picklist-container{
+    margin-top: -1rem;
+}
+
+.picklist-container .slds-dropdown{
+    max-height: 110px;
+}
+
+.lookup-container{
+    margin-top: -1rem;
+}
+
+.lookup-container .slds-dropdown{
+    max-height: 110px;
+    max-width: fit-content;
+}

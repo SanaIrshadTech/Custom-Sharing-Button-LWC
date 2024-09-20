@@ -1,0 +1,59 @@
+<template>
+    <div class="slds-p-around_small">
+
+        <!--Display input search box for the Departments - START-->
+        <lightning-input type="search" label={title} onchange={handleSearch} value={searchTerm}
+         onclick={clickhandler} placeholder={itemcounts}>
+        </lightning-input>
+        <!--Display input search box for the Departments - END-->
+
+        <!--Display Selected Departments in Pills Section - START-->
+        <template if:true={pillDisplayFlag}>
+            <div class="slds-box slds-m-top_xx-small pill-css">
+                <template for:each={selectedItems} for:item="item">
+                    <lightning-pill key={item.Id} class="slds-m-around_xx-small" label={item.Name} name={item.Id} onremove={handleRemove}>
+                    </lightning-pill>
+                </template>
+            </div>
+        </template>
+        <!--Display Selected Departments in Pills Section - END-->
+
+
+        <div>
+
+            <!--Div section to display 'Check ALL' and 'Uncheck ALL' clickable options to 
+            select/deselect all the department options displayed in dropdown in one go - START-->
+            <div class="slds-grid slds-wrap">
+                <template if:true={showDropdown}>
+                    <div class="slds-col slds-large-size_10-of-12 slds-medium-size_1-of-12 slds-size_1-of-12">
+                        <a href="javascript.void(0)" class="anchorTag-css" onclick={handleselectall}>Check All</a>
+                    </div>
+                    <div class="slds-col slds-large-size_2-of-12 slds-medium-size_1-of-12 slds-size_1-of-12">
+                        <div class="slds-float_right">
+                            <a href="javascript.void(0)" class="anchorTag-css" onclick={handleclearall}>Uncheck All</a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <!--Div section to display 'Check ALL' and 'Uncheck ALL' - END-->
+
+            <!--Display Departments lookup search result List in Drowpdown - START-->  
+            <template if:true={showDropdown}>
+                <div class="slds-box_border dropdownBox-css">
+                    <ul class="dropdown-list slds-dropdown_length-5 slds-p-left_medium dropdownBoxUl-css" onmouseleave={userMouseLeft}>
+                        <template for:each={filteredResults} for:item="dept">
+                            <li key={dept.Id} class="dropdown-item">
+                                <lightning-input type="checkbox" checked={dept.isChecked} label={dept.Name}
+                                    value={dept.Id} onchange={handleSelection}>
+                                </lightning-input>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+            <!--Display Departments lookup search result List in Drowpdown - END-->  
+
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,32 @@
+:host {
+    --slds-c-modal-header-color-background: antiquewhite;
+    --slds-c-modal-heading-font-weight: bold;
+    --slds-c-modal-content-color-background: lightblue;
+    --slds-c-modal-footer-color-background: antiquewhite;
+}
+
+.shareModalBox-css {
+    max-height:200px; 
+    min-height:200px; 
+    height:60%; 
+    margin-top:-1rem; 
+    overflow:hidden;
+}
+
+.edit-css {
+    margin-left: 5px; 
+    font-weight: bold;
+}
+
+.selectionHierarchy-css {
+    text-align-last: end;
+}
+
+.filterUsers-css {
+    margin-top:-8px;
+}
+
+.tableRowAction-css {
+    max-height: 100px;
+    min-height:100px;
+}

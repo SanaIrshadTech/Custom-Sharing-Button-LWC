@@ -1,0 +1,108 @@
+<template>
+    <lightning-quick-action-panel header="Custom Share Component" >
+
+        <lightning-layout class="shareModalBox-css">
+            
+            <lightning-layout-item class="slds-size_3-of-12 slds-m-top_small slds-m-left_xx-small">
+                <!--Different Sharing option combobox-->
+                <lightning-combobox
+                    name="selectItem"
+                    label="Select share option"
+                    value={shareOptionSelectedValue}
+                    options={shareOptions}
+                    onchange={selectShareOptions}
+                ></lightning-combobox>
+                
+                <!--Access Level option combobox-->
+                <lightning-combobox
+                    name="selectItem"
+                    value={accessLevelValue}
+                    label="Select Access Level"
+                    placeholder="Access Options"
+                    options={accessLevelOptions}
+                    onchange={selectAccessLevelOptions}
+                ></lightning-combobox>
+            </lightning-layout-item>
+
+
+                <template if:true={userSearch}>
+                    <lightning-layout-item class="slds-size_9-of-12">
+                    <!--Child LWC to provide user search box with drop down option-->
+                    <c-user-Lookup-Search-Lwc 
+                        data-id="user-lookup" 
+                        onselected={handleUserSelected} 
+                        onremoved={handleUserSelected} 
+                        title="Select Users" 
+                        object-api-name="User" 
+                        exclude-record-ids={excludeSharedRecFromSearch}
+                        icon-name="standard:user">
+                    </c-user-Lookup-Search-Lwc >
+                    </lightning-layout-item>
+                </template>
+
+                <template if:true={departmentDisplay}>
+                    <lightning-layout-item class="slds-size_9-of-12 slds-m-top_xx-medium">
+                    <!--Child Lwc to provide department search box with drop down option having multiselect capabilities-->
+                    <c-multiselect-options
+                        picklist-input ={departmentsOptionsForChild}
+                        title="Select Departments"
+                        ondepartmentselectionchanged={selectDepartmentsOptionsFromChild}>
+                    </c-multiselect-options>
+                    </lightning-layout-item>
+                </template>
+
+        </lightning-layout>
+
+        <template if:false={DisplaySharedRecord}>
+            <div class="slds-size_12-of-12 slds-m-top_x-small">
+                Shared with {recLength} groups of users.
+                <lightning-button class="slds-button slds-var-m-right_x-small edit-css" onclick={handleEditButtonMethod} variant="base" label="Edit"></lightning-button>
+            </div>
+        </template>
+
+        <template if:true={DisplaySharedRecord}>
+            <div style="max-height: 100px; min-height:100px;">
+                <div class="slds-size_12-of-12 slds-m-top_x-small slds-section__title slds-theme--shade slds-p-left_x-small slds-text-body_regular">
+                    <div class="slds-size_6-of-12" style="text-align-last: start;">
+                        Shared with {recLength} groups of users.
+                    </div>
+                    <div class="slds-size_6-of-12 selectionHierarchy-css">
+                        <template if:true={displaySelectionHierarchy}>
+                            <lightning-button class="slds-button slds-var-m-right_x-small" onclick={handleSelectionHierarchyMethod} variant="base" label="View Sharing Hierarchy"></lightning-button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="slds-size_12-of-12 slds-p-bottom_x-small filterUsers-css">
+                        <lightning-input
+                            name="enter-search"
+                            type="search"
+                            placeholder="Filter groups of users"
+                            value={searchStringForShared}   
+                            onchange={searchSharedRecordMethod}
+                        ></lightning-input>
+                </div>
+
+                <div class="slds-size_12-of-12 slds-m-bottom_small tableRowAction-css">
+                    <!--child LWC to display all the shared records w.r.t to current record in Table form.  
+                    Instead of standard lightning datatable (LDT), went for custom datatable specially, because we want 
+                    to display the Access level against every shared record in the picklist form which is not possible in standard LDT.
+                    -->
+                        <c-custom-types-for-datatable
+                            key-field="Id"
+                            data={sobjectSharedList}
+                            columns={columns}
+                            onrowaction={handleRowAction}
+                            onaccesslevelpicklistchanged={picklistChanged} 
+                            hide-checkbox-column>
+                        </c-custom-types-for-datatable>
+                </div>
+            </div>
+        </template>        
+
+        <div slot="footer">
+            <lightning-button onclick={handleShareRecordMethod} label="Save" variant="brand" class="slds-m-right_x-small"></lightning-button>
+            <lightning-button onclick={closePopup} label="Cancel" variant="neutral" class="slds-m-right_x-large"></lightning-button>   
+        </div>
+</lightning-quick-action-panel>
+</template>
