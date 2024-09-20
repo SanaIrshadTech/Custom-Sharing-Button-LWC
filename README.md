@@ -94,7 +94,7 @@ To use this component, add it to a Lightning Page or a Record Page as a Quick Ac
 
 To use Custom Sharing Button complete features, follow these steps:
 
-•	🛠️ Clone the Repository: git clone https://github.com/ SanaIrshadTech/Custom-Sharing-Button-LWC
+•	🛠️ Clone the Repository: [git clone https://github.com/ SanaIrshadTech/Custom-Sharing-Button-LWC](https://github.com/SanaIrshadTech/Custom-Sharing-Button-LWC)
 
 •	🚀 Deploy to Salesforce: Deploy the complete components available on the above Git repo to your Salesforce organization using your preferred method (e.g., Salesforce CLI, ANT, or directly in Salesforce Developer Console).
 
