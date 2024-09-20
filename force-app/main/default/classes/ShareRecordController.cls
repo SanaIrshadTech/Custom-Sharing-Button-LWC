@@ -13,9 +13,9 @@ public with sharing class ShareRecordController {
     /*************************************************************************************************************************************
     * Method Name   :   getShareObjectName
     * Purpose       :   method to dynamically find the share object related to any custom object. 
-	*					[Current design doesnot support sharing Standard objects records, as each standard object's related Share Object 
-	*					will have specific fields Api name. (eg: for for the AccountShare object, the AccessLevel field 
-	*					will be named 'AccountAccessLevel,' and this pattern is similar for other standard objects).
+    *			[Current design doesnot support sharing Standard objects records, as each standard object's related Share Object 
+    *		        will have specific fields Api name. (eg: for for the AccountShare object, the AccessLevel field 
+    *			will be named 'AccountAccessLevel,' and this pattern is similar for other standard objects).
     *                   However, the method can be leveraged for standard objects in future.
     **************************************************************************************************************************************/
     public static string getShareObjectName(String recordId) {
@@ -36,7 +36,7 @@ public with sharing class ShareRecordController {
     /*****************************************************************************************************************************
     * Method Name   :   insertShareRecordMethod
     * Purpose       :   method to insert share records in the system
-	*******************************************************************************************************************************/
+    *******************************************************************************************************************************/
     @AuraEnabled
     public static string insertShareRecordMethod(String recordId, List<String> userOrDeptList, String shareOptionValue, String accessLevel, String allInternalUserId) {
         
@@ -88,7 +88,7 @@ public with sharing class ShareRecordController {
     /*****************************************************************************************************************************
     * Method Name   :   getSobjectSharedRecords
     * Purpose       :   method to get and return all the shared record w.r.t current recId
-	*******************************************************************************************************************************/
+    *******************************************************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static List<Sobject> getSobjectSharedRecords(String recId) {
         String sobjectName = getShareObjectName(recId);
@@ -100,7 +100,7 @@ public with sharing class ShareRecordController {
    /*****************************************************************************************************************************
     * Method Name   :   deleteRecordMethod
     * Purpose       :   method to delete already shared records in the system
-	*******************************************************************************************************************************/    
+    *******************************************************************************************************************************/    
     @AuraEnabled
     public static String deleteRecordMethod(String recordId, List<String> shareRecDeletionIds) {
         try {
@@ -125,10 +125,10 @@ public with sharing class ShareRecordController {
     * Method Name   :   getUserPermissionSets
     * Purpose       :   method to check if Current user which invoked share component are allowed to access standard 
     *                   'Sharing Hierarchy' (available on the component as a hyperlink) or not.
-	*					Here, we have dummy permission set to check if that is assigned to the current user then they can
-	*  					get the Sharing Hierarchy hyperlink else user wont get that option on the UI. Please change it as per whatever
-	* 					PS you want in your system to decide this access. 
-	*******************************************************************************************************************************/    
+    *			Here, we have dummy permission set to check if that is assigned to the current user then they can
+    *  			get the Sharing Hierarchy hyperlink else user wont get that option on the UI. Please change it as per whatever
+    * 			PS you want in your system to decide this access. 
+    *******************************************************************************************************************************/    
    @AuraEnabled(cacheable=true)
     public static boolean getUserPermissionSets() {
         for (PermissionSetAssignment assignment : [SELECT PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = :UserInfo.getUserId()]) {
@@ -142,7 +142,7 @@ public with sharing class ShareRecordController {
     /*****************************************************************************************************************************
     * Method Name   :   updateRecordMethod
     * Purpose       :   method to update already shared records in the system
-	*******************************************************************************************************************************/    
+    *******************************************************************************************************************************/    
     @AuraEnabled
     public static String updateRecordMethod(String recordId, String shareRecUpdateList) {
         
@@ -171,7 +171,7 @@ public with sharing class ShareRecordController {
     /*****************************************************************************************************************************
     * Method Name   :   UpdateShareRecWrapper
     * Purpose       :   wrapper to split the shared record data into the record ID and the access level with which it has been shared.
-	*******************************************************************************************************************************/    
+    *******************************************************************************************************************************/    
     public Class UpdateShareRecWrapper{
         @AuraEnabled Public String recId;
         @AuraEnabled Public String accessLevel;
