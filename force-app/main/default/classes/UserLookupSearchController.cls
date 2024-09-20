@@ -25,8 +25,8 @@ public with sharing class UserLookupSearchController {
     * Method Name   :   fetchLookUpValues
     * Purpose       :   Fetch the users from the system after excluding all the 
     *                   1- User Ids with which current record Id is already shared (excludeRecordIds). 
-	*					2- User Ids which is already selected from dropdown on the UI (excludeIds) to share the current record with.
- 	*					return the resultant User List to be displayed on UI dropdown on LWC.
+    *			2- User Ids which is already selected from dropdown on the UI (excludeIds) to share the current record with.
+    *			return the resultant User List to be displayed on UI dropdown on LWC.
     *******************************************************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static List<UserResultWrapper> fetchLookUpValues(String searchKeyWord, List<sObject> excludeIds, String objectAPIName, String recordTypeId, List<String> excludeRecordIds) {
